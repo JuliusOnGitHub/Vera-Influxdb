@@ -1,0 +1,152 @@
+{
+    "default_icon": "Generic_IO.png",
+    "Tabs": [
+        {
+            "Label": {
+                "lang_tag": "tabname_control",
+                "text": "Settings"
+            },
+            "Position": "0",
+            "TabType": "flash",
+            "SceneGroup": [
+                {
+                    "id": "1",
+                    "top": ".5",
+                    "left": "0",
+                    "x": "1",
+                    "y": "1"
+                },
+                {
+                    "id": "2",
+                    "top": "2",
+                    "left": "0",
+                    "x": "1",
+                    "y": "1"
+                }
+            ],
+            "ControlGroup": [
+                {
+                    "id": "1",
+                    "scenegroup": "1"
+                },
+                {
+                    "id": "2",
+                    "scenegroup": "2",
+                    "isSingle": "1"
+                }
+            ],
+            "Control": [
+                {
+                    "ControlType": "label",
+                    "Label": {
+                        "lang_tag": "device_settings_page",
+                        "text": "Influxdb url:"
+                    },
+                    "Display": {
+                        "Top": 20,
+                        "Left": 50,
+                        "Width": 130,
+                        "Height": 20
+                    }
+                },
+                {
+                    "ControlType": "input",
+                    "ID": "newInfluxDbUrl",
+                    "Display": {
+                        "Service": "urn:upnp-influxdata-com:serviceId:InfluxDB1",
+                        "Variable": "InfluxDbUrl",
+                        "Top": 20,
+                        "Left": 170,
+                        "Width": 340,
+                        "Height": 20,
+						"ID": "newInfluxDbUrl"
+                    }
+                },
+                {
+                    "ControlType": "button",
+                    "Label": {
+                        "lang_tag": "setLabel",
+                        "text": "Set"
+                    },
+                    "Display": {
+                        "Top": 20,
+                        "Left": 520,
+                        "Width": 100,
+                        "Height": 20
+                    },
+                    "Command": {
+                        "Service": "urn:upnp-influxdata-com:serviceId:InfluxDB1",
+                        "Action": "SetInfluxDbUrl",
+                        "Parameters": [
+                            {
+                                "Name": "newInfluxDbUrl",
+                                "ID": "newInfluxDbUrl"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "ControlType": "label",
+                    "Label": {
+                        "lang_tag": "device_settings_page",
+                        "text": "Influxdb database:"
+                    },
+                    "Display": {
+                        "Top": 50,
+                        "Left": 50,
+                        "Width": 150,
+                        "Height": 20
+                    }
+                },
+                {
+                    "ControlType": "input",
+                    "ID": "newInfluxDbDatabase",
+                    "Display": {
+                        "Service": "urn:upnp-influxdata-com:serviceId:InfluxDB1",
+                        "Variable": "InfluxDbDatabase",
+                        "Top": 50,
+                        "Left": 170,
+                        "Width": 340,
+                        "Height": 20,
+						"ID": "newInfluxDbDatabase"
+                    }
+                },
+                {
+                    "ControlType": "button",
+                    "Label": {
+                        "lang_tag": "setLabel",
+                        "text": "Set"
+                    },
+                    "Display": {
+                        "Top": 50,
+                        "Left": 520,
+                        "Width": 100,
+                        "Height": 20
+                    },
+                    "Command": {
+                        "Service": "urn:upnp-influxdata-com:serviceId:InfluxDB1",
+                        "Action": "SetInfluxDbDatabase",
+                        "Parameters": [
+                            {
+                                "Name": "newInfluxDbDatabase",
+                                "ID": "newInfluxDbDatabase"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "Label": {
+                "lang_tag": "advanced",
+                "text": "Advanced"
+            },
+            "Position": "2",
+            "TabType": "javascript",
+            "ScriptName": "shared.js",
+            "Function": "advanced_device"
+        }
+    ],
+    "device_type": "urn:schemas-influxdata-com:device:influxdb:1",
+    "eventList2": []
+}

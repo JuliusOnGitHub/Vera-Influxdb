@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<implementation>
+  <files>L_Influxdb.lua</files>
+  <startup>initstatus</startup>
+  <actionList>
+    <action>
+      <serviceId>urn:upnp-influxdata-com:serviceId:InfluxDB1</serviceId>
+      <name>SetInfluxDbUrl</name>
+      <run>
+		luup.log("InfluxDB: Set variable InfluxDbUrl " .. lul_settings.newInfluxDbUrl .. " for " .. lul_device .. ".")
+		luup.variable_set("urn:upnp-influxdata-com:serviceId:InfluxDB1","InfluxDbUrl", lul_settings.newInfluxDbUrl, lul_device)
+	  </run>
+    </action>
+    <action>
+      <serviceId>urn:upnp-influxdata-com:serviceId:InfluxDB1</serviceId>
+      <name>SetInfluxDbDatabase</name>
+      <run>
+		luup.log("InfluxDB: Set variable InfluxDbDatabase " .. lul_settings.newInfluxDbDatabase .. " for " .. lul_device .. ".")
+		luup.variable_set("urn:upnp-influxdata-com:serviceId:InfluxDB1","InfluxDbDatabase", lul_settings.newInfluxDbDatabase, lul_device)
+	  </run>
+    </action>
+  </actionList>  
+</implementation>
