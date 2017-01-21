@@ -28,7 +28,7 @@ end
 
 function variable_watch(service, variable, deviceNo)
 	log("Registering watch for " .. variable .. " on device " .. tostring(deviceNo) .. ".")
-	luup.variable_watch(CALLBACK, service, variable, deviceNo)
+	luup.variable_watch(service, variable, deviceNo)
 end
 
 local function get_variable(variable, lul_device, default)
@@ -62,35 +62,35 @@ function initstatus(lul_device)
 			if d.category_num == 2 then
 				variable_watch("urn:upnp-org:serviceId:Dimming1", "LoadLevelStatus", deviceNo)
 			elseif d.category_num == 3 then
-				variable_watch(CALLBACK, "urn:upnp-org:serviceId:SwitchPower1", "Status", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:EnergyMetering1", "Watts", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:EnergyMetering1", "KWH", deviceNo)
+				variable_watch("urn:upnp-org:serviceId:SwitchPower1", "Status", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:EnergyMetering1", "Watts", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:EnergyMetering1", "KWH", deviceNo)
 			elseif d.category_num == 4 then
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:SecuritySensor1", "Tripped", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:SecuritySensor1", "ArmedTripped", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:SecuritySensor1", "Armed", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:SecuritySensor1", "Tripped", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:SecuritySensor1", "ArmedTripped", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:SecuritySensor1", "Armed", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
 			elseif d.category_num == 5 then
-				variable_watch(CALLBACK, "urn:upnp-org:serviceId:HVAC_UserOperatingMode1", "ModeStatus", deviceNo)
-				variable_watch(CALLBACK, "urn:upnp-org:serviceId:TemperatureSetpoint1_Heat", "CurrentSetpoint", deviceNo)
-				variable_watch(CALLBACK, "urn:upnp-org:serviceId:TemperatureSetpoint1_Cool", "CurrentSetpoint", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:HVAC_ZoneThermostat:1", "CurrentTemperature", deviceNo)
+				variable_watch("urn:upnp-org:serviceId:HVAC_UserOperatingMode1", "ModeStatus", deviceNo)
+				variable_watch("urn:upnp-org:serviceId:TemperatureSetpoint1_Heat", "CurrentSetpoint", deviceNo)
+				variable_watch("urn:upnp-org:serviceId:TemperatureSetpoint1_Cool", "CurrentSetpoint", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:HVAC_ZoneThermostat:1", "CurrentTemperature", deviceNo)
 			elseif d.category_num == 7 then
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:DoorLock1", "Target", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:DoorLock1", "Status", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:DoorLock1", "Target", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:DoorLock1", "Status", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
 			elseif d.category_num == 16 then
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:HumiditySensor1", "CurrentLevel", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:HumiditySensor1", "CurrentLevel", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
 			elseif d.category_num == 17 then
-				variable_watch(CALLBACK, "urn:upnp-org:serviceId:TemperatureSensor1", "CurrentTemperature", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
+				variable_watch("urn:upnp-org:serviceId:TemperatureSensor1", "CurrentTemperature", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
 			elseif d.category_num == 18 then
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:LightSensor1", "CurrentLevel", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:LightSensor1", "CurrentLevel", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:HaDevice1", "BatteryLevel", deviceNo)
 			elseif d.category_num == 18 then
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:EnergyMetering1", "Watts", deviceNo)
-				variable_watch(CALLBACK, "urn:micasaverde-com:serviceId:EnergyMetering1", "KWH", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:EnergyMetering1", "Watts", deviceNo)
+				variable_watch("urn:micasaverde-com:serviceId:EnergyMetering1", "KWH", deviceNo)
 			end
 		end
 	end
