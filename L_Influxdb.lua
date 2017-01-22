@@ -28,7 +28,7 @@ end
 
 function variable_watch(service, variable, deviceNo)
 	log("Registering watch for " .. variable .. " on device " .. tostring(deviceNo) .. ".")
-	luup.variable_watch(service, variable, deviceNo)
+	luup.variable_watch(CALLBACK, service, variable, deviceNo)
 end
 
 local function get_variable(variable, lul_device, default)
@@ -49,6 +49,10 @@ local function task(text, mode)
             luup.call_delay("clearTask", 30, "", false)
         end
     end
+end
+
+function clearTask()
+    task("Clearing...", TASK_SUCCESS)
 end
 
 function initstatus(lul_device)
@@ -121,8 +125,21 @@ function writeData(writeUrl, lineProtocol)
 
 	log("Request to influxdb url " .. writeUrl .. " finished with code " .. code);
 	if code ~= 204 then
-		task("You need to configure Influx database settings", TASK_ERROR_PERM)
+		task("Reqeust to influxdb failed. You need to configure Influx database settings", TASK_ERROR_PERM)
+		task("Reqeust to influxdb succeeded", TASK_SUCCESS)
 	end
+
+	previousCallCode = code
+end
+
+function toInfluxFriendly(text)
+	return text:gsub(" ","_")
+end
+
+function toInfluxName(lul_device, lul_variable)
+	local device = luup.devices[lul_device]
+	local room = luup.rooms[device.room_num]
+	return toInfluxFriendly(room) .. "." .. toInfluxFriendly(device.description) .. "." .. lul_variable;
 end
 
 function getWriteUrl()
@@ -132,11 +149,9 @@ function getWriteUrl()
 	return writeUrl;
 end
 
-function watchVariable(deviceNo, lul_service, lul_variable, lul_value_old, lul_value_new)
+function watchVariable(lul_device, lul_service, lul_variable, lul_value_old, lul_value_new)
 	log("Watch variable triggered.")
-
-	local device = luup.devices[deviceNo]
-	local lineProtocol = device.description:gsub(" ","_") .. "." .. lul_variable .." value="..tostring(lul_value_new);
+	local lineProtocol = toInfluxName(lul_device, lul_variable) .. " value=" .. tostring(lul_value_new);
 	log("Line protocol : " .. lineProtocol)
 	writeData(getWriteUrl(), lineProtocol)
 end
